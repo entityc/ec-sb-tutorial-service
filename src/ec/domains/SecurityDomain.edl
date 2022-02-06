@@ -1,0 +1,70 @@
+domain Security (Tutorial) {
+
+    enum Role {
+        T "role"
+        Student { T "role:default" }
+        Instructor { T "role:instructor" }
+        Administrator { T "role:admin" }
+    }
+
+    entity User {
+        T "user"
+        T "access:write:user"
+        T "access:write:role:admin"
+        T "access:read:role:admin"
+        attributes {
+            roles {
+                T "access:write:role:admin"
+            }
+            firstName {
+                T "name:first"
+            }
+            lastName {
+                T "name:last"
+            }
+            email {
+                T "login:username"
+                T "email"
+            }
+            enabled {
+                T "login:enabled"
+                T "access:write:role:admin"
+            }
+            encodedPassword {
+                T "login:password"
+            }
+        }
+        relationships {
+        }
+    }
+
+    entity Tutorial {
+        T "access:write:role:admin"
+        T "access:read:role:instructor"
+        relationships {
+            createdUser {
+                T "user:created"
+            }
+        }
+    }
+    entity Module {
+        T "access:write:role:instructor"
+        T "access:read:role:instructor"
+        T "access:read:role:default"
+    }
+    entity Session {
+        T "access:write:role:instructor"
+        T "access:read:role:instructor"
+        T "access:read:role:default"
+    }
+    entity Exercise {
+        T "access:write:role:instructor"
+        T "access:read:role:instructor"
+        T "access:read:role:default"
+    }
+    entity Step {
+        T "access:write:role:instructor"
+        T "access:read:role:instructor"
+        T "access:read:role:default"
+    }
+}

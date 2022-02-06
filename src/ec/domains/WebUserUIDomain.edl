@@ -1,0 +1,4 @@
+domain WebUserUI (Tutorial) {
+
+    namespace org.entityc.tutorial.web.user
+}

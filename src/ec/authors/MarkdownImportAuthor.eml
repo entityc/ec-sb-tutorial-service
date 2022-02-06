@@ -1,0 +1,46 @@
+$[author to org.entityc.springboot.controller]
+    $[author to outlet members]
+$[import "util/AutoWired" from ServerTemplates]
+        $[if entity.name == "Tutorial"]
+            $[call addAutoWiredClass(package:"org.entityc.tutorial.util", className:"MarkdownImporter")]
+            $[call addAutoWiredClass(package:"org.entityc.tutorial.security", className:"SecurityService")]
+            $[call addAutoWiredClass(package:"org.entityc.tutorial.security", className:"PersistentUserDetailsService")]
+            $[let userEntity = (space|domain:Security).entityTagged("user")]
+$[send imports]
+import ${userEntity|domain:Model|fullname};
+$[/send]
+        $[/if]
+    $[/author]
+    $[author to outlet methods]
+        $[if entity.name == "Tutorial"]
+    @RequestMapping(
+        path = "/{id}/import/markdown",
+        method = RequestMethod.POST,
+        consumes = "text/markdown"
+    )
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    @PreAuthorize("hasAnyRole('INSTRUCTOR')")
+    public void importMarkdown(@PathVariable("id") UUID id, @RequestBody String markdownText) throws ServiceException {
+        if (!markdownImporter.validateModuleMarkdown(id, markdownText)) {
+            throw new ValidationException("Markdown for import not valid.");
+        }
+        if (!markdownImporter.importModuleMarkdown(id, markdownText)) {
+            throw new ValidationException("Error occurred while trying to import this markdown.");
+        }
+    }
+
+    @RequestMapping(
+        path = "/{id}/import/markdown/validate",
+        method = RequestMethod.POST,
+        consumes = "text/markdown"
+    )
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    @PreAuthorize("hasAnyRole('INSTRUCTOR')")
+    public void validateMarkdown(@PathVariable("id") UUID id, @RequestBody String markdownText) throws ServiceException {
+        if (!markdownImporter.validateModuleMarkdown(id, markdownText)) {
+            throw new ValidationException("Markdown for import not valid.");
+        }
+    }
+        $[/if]
+    $[/author]
+$[/author]

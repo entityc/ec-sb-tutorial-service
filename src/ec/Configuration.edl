@@ -1,0 +1,114 @@
+configuration CodeGen {
+
+    output ServerCode {
+        path "src/main/java"
+    }
+
+    output SourceMain {
+        path "src/main"
+    }
+
+    output Project {
+        path ""
+    }
+
+    output Docs {
+        path "docs"
+    }
+
+    output Postman {
+        path "postman"
+    }
+
+    output DatabaseMigrationResources {
+        path "src/main/resources/db/migration"
+    }
+
+    output DatabaseSchema {
+        path "schema"
+    }
+
+    transform Postgres {
+        output primary DatabaseMigrationResources
+        output schema DatabaseSchema
+    }
+
+    repository ServerTemplates {
+        type local
+        path "../ec-springboot-lib"
+        /*
+        type github
+        organization "entityc"
+        name "ec-springboot-lib"
+        path ""
+        tag "v1.0.1"
+        */
+    }
+
+    templates {
+        import from ServerTemplates
+
+        default config {
+            "projectPackage" : "org.entityc.tutorial"
+        }
+
+        template PostmanTemplate in "postman" {
+            output primary Postman
+            config {
+                "secureHostnamePrefix" : "",
+                "hostname" : "localhost",
+                "apiName" : "ectutorials",
+                "title" : "EC Tutorials",
+                "description" : "For testing the entity compiler tutorials service.",
+                "postmanId" : "c55c04dc-9b0a-4912-9641-5e4884001e72"
+            }
+        }
+        template ServerDocumentation  in "doc" {
+            output primary Docs
+        }
+        template Microservice in "system" {
+            output primary ServerCode
+        }
+
+        template DocumentBuilderAuthor  in "documentBuilder" {
+            output primary ServerCode
+        }
+
+        template ProjectTemplate in "project" {
+            output primary Project
+        }
+        template SecurityTemplate in "security" {
+            output primary ServerCode
+        }
+
+        template AdminConsole in "web/thymeleaf-bootstrap/admin" {
+            output primary SourceMain
+            config {
+                "appTitle" : "Tutorial Central Admin",
+                "appHomeMessage": "This website was built as part of an Entity Compiler tutorial to show the power of the Entitle Compiler and templates written for it. The templates used generate a website implemented with Springboot, Thymeleaf and Bootstrap. It includes user authentication and this web admin console. ",
+                "adminUrlPrefix" : "admin",
+                "optShowMarkdownIcon": true
+            }
+        }
+        template AuthPageTemplate in "web/thymeleaf-bootstrap/auth" {
+            output primary SourceMain
+        }
+
+        template LocalizedMessagesTemplate in "web/thymeleaf-bootstrap" {
+            output primary SourceMain
+        }
+    }
+
+    repository LocalAuthors {
+        type local
+        path "src/ec/authors"
+    }
+
+    templates {
+        import from LocalAuthors
+
+        template MarkdownImportAuthor {
+            output primary ServerCode
+        }
+    }
+}

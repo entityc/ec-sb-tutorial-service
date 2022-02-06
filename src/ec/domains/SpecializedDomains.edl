@@ -1,0 +1,113 @@
+/*
+  Domain Specialization
+ */
+
+domain Database (Tutorial) {
+
+    namespace db.migration
+
+    entity User rename platform_user
+    entity Module rename tutorial_module
+}
+
+domain DTO (Tutorial) {
+    entity Tutorial {
+        view APIGet {
+            relationships {
+                include to-many entity Module as modules with view APIGet
+            }
+        }
+    }
+    entity Module {
+        view APIGet {
+            relationships {
+                include to-one entity Tutorial with view Reference
+                include to-many entity Session as sessions with view APIGet
+            }
+        }
+    }
+    entity Session {
+        view APIGet {
+            relationships {
+                include to-one entity Module with view Reference
+                include to-many entity Exercise as exercises with view APIGet
+            }
+        }
+    }
+    entity Exercise {
+        view APIGet {
+            relationships {
+                include to-one entity Session with view Reference
+                include to-many entity Step as steps with view APIGet
+            }
+        }
+    }
+    entity Step {
+        view APIGet {
+            relationships {
+                include to-one entity Exercise with view Reference
+            }
+        }
+    }
+}
+
+domain Repository (Tutorial)
+{
+    entity Module {
+        attributes {
+            number       { T "sort:asc" }
+        }
+    }
+    entity Session {
+        attributes {
+            number       { T "sort:asc" }
+        }
+    }
+    entity Exercise {
+        attributes {
+            number       { T "sort:asc" }
+        }
+    }
+    entity Step {
+        attributes {
+            number       { T "sort:asc" }
+        }
+    }
+}
+
+domain APIPath (Tutorial) {
+
+    namespace api.ectutorials
+}
+
+domain Service (Tutorial) {
+}
+
+domain InMemoryCache (Tutorial) {
+
+    entity Module {
+        T "enable"
+        T "type" = "lru"
+        T "size" = "15"
+    }
+    entity Session {
+        T "enable"
+        T "type" = "lru"
+        T "size" = "50"
+    }
+    entity Exercise {
+        T "enable"
+        T "type" = "lru"
+        T "size" = "50"
+    }
+    entity Step {
+        T "enable"
+        T "type" = "lru"
+        T "size" = "100"
+    }
+    entity User {
+        T "enable"
+        T "type" = "lru"
+        T "size" = "10"
+    }
+}

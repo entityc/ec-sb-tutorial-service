@@ -1,0 +1,64 @@
+space TutorialService {
+
+    namespace org.entityc.tutorial
+
+    D "The Tutorial Service is generated using the Entity Compiler (EC) to demonstrate how the compiler can"
+    D "be used to create a real fully working server application. This is actually one of the modules in the"
+    D "Entity Compiler Tutorial."
+
+    metadata {
+        "microserviceIdentifier" : "ec-tutorial-service",
+        "microserviceTitle" : "Entity Compiler Tutorial Service",
+        "microserviceName" : "ECTutorialService",
+        "basePackage" : "org.entityc",
+        "databaseName" : "ECTutorialService"
+    }
+
+    /**
+      Entities
+     */
+    repository LocalEntities {
+        type local
+        path "src/ec/entities"
+    }
+
+    import Platform, Tutorial from LocalEntities
+
+    /**
+      Domains
+     */
+    repository DomainRepo {
+        type github
+        organization "entityc"
+        name "ec-std-lib"
+        path "domains"
+        tag "v1.0.0"
+    }
+    // Microservice
+    import DTO, JSONDTO, DTOMapper, Model, Repository, Service, Database, Controller, Security from DomainRepo
+    import Utils, Exception, InMemoryCache, StaticLocalization from DomainRepo
+    // Web
+    import AdminUI, WebUserUI, DocumentBuilder from DomainRepo
+
+    // Specialized Domains
+    repository LocalDomains {
+        type local
+        path "src/ec/domains"
+    }
+    import SpecializedDomains, SecurityDomain,
+           AdminUIDomain, WebUserUIDomain, DocumentBuilderDomain
+           from LocalDomains
+
+    /**
+      Languages
+     */
+    repository LanguageRepo {
+        type github
+        organization "entityc"
+        name "ec-std-lib"
+        path "languages"
+        tag "v1.0.0"
+    }
+    import Java, Markdown from LanguageRepo
+
+}

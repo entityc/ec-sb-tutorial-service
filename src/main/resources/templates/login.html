@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/webjars/bootstrap/5.0.1/css/bootstrap.min.css}" />
+
+    <title>Login</title>
+</head>
+<body>
+<script type="text/javascript"
+        th:src="@{/webjars/jquery/3.6.0/jquery.min.js/}"></script>
+<script type="text/javascript"
+        th:src="@{/webjars/bootstrap/5.0.1/js/bootstrap.min.js}"></script>
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+	<div class="container-fluid">
+		<div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+			<ul class="navbar-nav me-auto">
+				<li class="nav-item active">
+				</li>
+			</ul>
+		</div>
+		<div class="mx-auto order-0">
+			<a class="navbar-brand mx-auto" th:href="@{/}">Login</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".dual-collapse2">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+		</div>
+		<div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+		</div>
+	</div>
+</nav>
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <h1>Login</h1>
+            <form th:action="@{/login}" method="post">
+                <div th:if="${param.error}">
+                    <div class="alert alert-danger">Invalid username or password.</div>
+                </div>
+                <div th:if="${param.logout}">
+                    <div class="alert alert-info">You have been logged out.</div>
+                </div>
+                <div class="form-group">
+                    <label for="username">Email</label>: <input type="text"
+                                                                   id="username" name="username" class="form-control"
+                                                                   autofocus="autofocus" placeholder="Email"/>
+                    <p/>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>: <input type="password"
+                                                                   id="password" name="password" class="form-control"
+                                                                   placeholder="Password"/>
+                    <p/>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <input type="submit" name="login-submit" id="login-submit"
+                                   class="form-control btn btn-primary" value="Log In"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <p/>
+                    <span>New user? <a th:href="@{/signup}">Sign Up here</a></span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

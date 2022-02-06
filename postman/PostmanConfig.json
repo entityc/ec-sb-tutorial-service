@@ -1,0 +1,1079 @@
+{
+	"info": {
+		"_postman_id": "c55c04dc-9b0a-4912-9641-5e4884001e72",
+		"name": "EC Tutorials",
+		"description": "For testing the entity compiler tutorials service.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bb4487d8-2737-40fc-80f0-3900ff749869",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"pm.environment.set(\"token\", jsonData.access_token);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{secureHostnamePrefix}}{{hostname}}/",
+					"protocol": "http"
+				}
+			},
+			"response": []
+		}
+		, {
+			"name": "Exercise - CREATE",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"number\":14236,\"overview\":\"dkiasnmw\",\"session\":{\"id\":\"uuid\"}}"
+				},
+				"url": {
+					"raw": "http://{{hostname}}/ectutorials/exercise",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"ectutorials",
+						"exercise"
+					]
+				}
+			},
+			"response": []
+		}
+		, {
+			"name": "Exercise - GET by ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{hostname}}/ectutorials/exercise/uuid",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"ectutorials",
+						"exercise",
+						"uuid"
+					]
+				}
+			},
+			"response": []
+		}
+		, {
+			"name": "Exercise - GET LIST",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{hostname}}/ectutorials/exercise",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"ectutorials",
+						"exercise"
+					],
+					"query": [
+						{
+							"key": "start",
+							"value": "0",
+							"description": "The first index of the full list to return."
+						},
+						{
+							"key": "limit",
+							"value": "500",
+                            "description": "The maximum items to return."
+						}
+					]
+				}
+			},
+			"response": []
+		}
+		, {
+			"name": "Exercise - CREATE with SESSION",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"number\":14236,\"overview\":\"dkiasnmw\",\"session\":{\"id\":\"uuid\"}}"
+				},
+				"url": {
+					"raw": "http://{{hostname}}/ectutorials/exercise/session/uuid",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"ectutorials",
+						"exercise",
+						"session",
+						"uuid"
+					]
+				}
+			},
+			"response": []
+		}
+		, {
+			"name": "Exercise - GET LIST by SESSION",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{hostname}}/ectutorials/exercise/session/uuid",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"ectutorials",
+						"exercise",
+						"session",
+						"uuid"
+					],
+					"query": [
+						{
+							"key": "start",
+							"value": "0",
+							"description": "The first index of the full list to return."
+						},
+						{
+							"key": "limit",
+							"value": "500",
+                            "description": "The maximum items to return."
+						}
+					]
+				}
+			},
+			"response": []
+		}
+		, {
+			"name": "Module - CREATE",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"summary\":\"mdkias\",\"number\":46649,\"overview\":\"wquahbu\",\"title\":\"cxj\",\"tutorial\":{\"id\":\"uuid\"}}"
+				},
+				"url": {
+					"raw": "http://{{hostname}}/ectutorials/module",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"ectutorials",
+						"module"
+					]
+				}
+			},
+			"response": []
+		}
+		, {
+			"name": "Module - GET by ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{hostname}}/ectutorials/module/uuid",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"ectutorials",
+						"module",
+						"uuid"
+					]
+				}
+			},
+			"response": []
+		}
+		, {
+			"name": "Module - GET LIST",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{hostname}}/ectutorials/module",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"ectutorials",
+						"module"
+					],
+					"query": [
+						{
+							"key": "start",
+							"value": "0",
+							"description": "The first index of the full list to return."
+						},
+						{
+							"key": "limit",
+							"value": "500",
+                            "description": "The maximum items to return."
+						}
+					]
+				}
+			},
+			"response": []
+		}
+		, {
+			"name": "Module - CREATE with TUTORIAL",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"summary\":\"mdkias\",\"number\":46649,\"overview\":\"wquahbu\",\"title\":\"cxj\",\"tutorial\":{\"id\":\"uuid\"}}"
+				},
+				"url": {
+					"raw": "http://{{hostname}}/ectutorials/module/tutorial/uuid",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"ectutorials",
+						"module",
+						"tutorial",
+						"uuid"
+					]
+				}
+			},
+			"response": []
+		}
+		, {
+			"name": "Module - GET LIST by TUTORIAL",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{hostname}}/ectutorials/module/tutorial/uuid",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"ectutorials",
+						"module",
+						"tutorial",
+						"uuid"
+					],
+					"query": [
+						{
+							"key": "start",
+							"value": "0",
+							"description": "The first index of the full list to return."
+						},
+						{
+							"key": "limit",
+							"value": "500",
+                            "description": "The maximum items to return."
+						}
+					]
+				}
+			},
+			"response": []
+		}
+		, {
+			"name": "Session - CREATE",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"number\":14236,\"discussion\":\"dkiasnmw\",\"title\":\"uah\",\"objective\":\"ulcxjkq\",\"module\":{\"id\":\"uuid\"}}"
+				},
+				"url": {
+					"raw": "http://{{hostname}}/ectutorials/session",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"ectutorials",
+						"session"
+					]
+				}
+			},
+			"response": []
+		}
+		, {
+			"name": "Session - GET by ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{hostname}}/ectutorials/session/uuid",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"ectutorials",
+						"session",
+						"uuid"
+					]
+				}
+			},
+			"response": []
+		}
+		, {
+			"name": "Session - GET LIST",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{hostname}}/ectutorials/session",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"ectutorials",
+						"session"
+					],
+					"query": [
+						{
+							"key": "start",
+							"value": "0",
+							"description": "The first index of the full list to return."
+						},
+						{
+							"key": "limit",
+							"value": "500",
+                            "description": "The maximum items to return."
+						}
+					]
+				}
+			},
+			"response": []
+		}
+		, {
+			"name": "Session - CREATE with MODULE",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"number\":14236,\"discussion\":\"dkiasnmw\",\"title\":\"uah\",\"objective\":\"ulcxjkq\",\"module\":{\"id\":\"uuid\"}}"
+				},
+				"url": {
+					"raw": "http://{{hostname}}/ectutorials/session/module/uuid",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"ectutorials",
+						"session",
+						"module",
+						"uuid"
+					]
+				}
+			},
+			"response": []
+		}
+		, {
+			"name": "Session - GET LIST by MODULE",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{hostname}}/ectutorials/session/module/uuid",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"ectutorials",
+						"session",
+						"module",
+						"uuid"
+					],
+					"query": [
+						{
+							"key": "start",
+							"value": "0",
+							"description": "The first index of the full list to return."
+						},
+						{
+							"key": "limit",
+							"value": "500",
+                            "description": "The maximum items to return."
+						}
+					]
+				}
+			},
+			"response": []
+		}
+		, {
+			"name": "Step - CREATE",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"number\":14236,\"instructions\":\"dkiasnmw\",\"exercise\":{\"id\":\"uuid\"}}"
+				},
+				"url": {
+					"raw": "http://{{hostname}}/ectutorials/step",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"ectutorials",
+						"step"
+					]
+				}
+			},
+			"response": []
+		}
+		, {
+			"name": "Step - GET by ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{hostname}}/ectutorials/step/uuid",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"ectutorials",
+						"step",
+						"uuid"
+					]
+				}
+			},
+			"response": []
+		}
+		, {
+			"name": "Step - GET LIST",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{hostname}}/ectutorials/step",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"ectutorials",
+						"step"
+					],
+					"query": [
+						{
+							"key": "start",
+							"value": "0",
+							"description": "The first index of the full list to return."
+						},
+						{
+							"key": "limit",
+							"value": "500",
+                            "description": "The maximum items to return."
+						}
+					]
+				}
+			},
+			"response": []
+		}
+		, {
+			"name": "Step - CREATE with EXERCISE",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"number\":14236,\"instructions\":\"dkiasnmw\",\"exercise\":{\"id\":\"uuid\"}}"
+				},
+				"url": {
+					"raw": "http://{{hostname}}/ectutorials/step/exercise/uuid",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"ectutorials",
+						"step",
+						"exercise",
+						"uuid"
+					]
+				}
+			},
+			"response": []
+		}
+		, {
+			"name": "Step - GET LIST by EXERCISE",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{hostname}}/ectutorials/step/exercise/uuid",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"ectutorials",
+						"step",
+						"exercise",
+						"uuid"
+					],
+					"query": [
+						{
+							"key": "start",
+							"value": "0",
+							"description": "The first index of the full list to return."
+						},
+						{
+							"key": "limit",
+							"value": "500",
+                            "description": "The maximum items to return."
+						}
+					]
+				}
+			},
+			"response": []
+		}
+		, {
+			"name": "Tutorial - CREATE",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"summary\":\"mdkias\",\"identifier\":\"mwq\",\"overview\":\"ahbulcxj\",\"title\":\"qjboids\",\"createdUser\":{\"id\":\"uuid\"}}"
+				},
+				"url": {
+					"raw": "http://{{hostname}}/ectutorials/tutorial",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"ectutorials",
+						"tutorial"
+					]
+				}
+			},
+			"response": []
+		}
+		, {
+			"name": "Tutorial - GET by ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{hostname}}/ectutorials/tutorial/uuid",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"ectutorials",
+						"tutorial",
+						"uuid"
+					]
+				}
+			},
+			"response": []
+		}
+		, {
+			"name": "Tutorial - GET LIST",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{hostname}}/ectutorials/tutorial",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"ectutorials",
+						"tutorial"
+					],
+					"query": [
+						{
+							"key": "start",
+							"value": "0",
+							"description": "The first index of the full list to return."
+						},
+						{
+							"key": "limit",
+							"value": "500",
+                            "description": "The maximum items to return."
+						}
+					]
+				}
+			},
+			"response": []
+		}
+		, {
+			"name": "User - CREATE",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"firstName\":\"mdkias\",\"lastName\":\"mwq\",\"roles\":[],\"encodedPassword\":\"hbulcx\",\"email\":\"kqjboidsc\",\"enabled\":false}"
+				},
+				"url": {
+					"raw": "http://{{hostname}}/ectutorials/user",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"ectutorials",
+						"user"
+					]
+				}
+			},
+			"response": []
+		}
+		, {
+			"name": "User - GET by ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{hostname}}/ectutorials/user/uuid",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"ectutorials",
+						"user",
+						"uuid"
+					]
+				}
+			},
+			"response": []
+		}
+		, {
+			"name": "User - GET LIST",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{hostname}}/ectutorials/user",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"ectutorials",
+						"user"
+					],
+					"query": [
+						{
+							"key": "start",
+							"value": "0",
+							"description": "The first index of the full list to return."
+						},
+						{
+							"key": "limit",
+							"value": "500",
+                            "description": "The maximum items to return."
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
