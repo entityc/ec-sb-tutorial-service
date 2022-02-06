@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This repository contains the example Tutorial Microservice that you get when you complete the [Tutorial Microservice Tutorial](http://github.com/entityc/ec-tutorials/TutorialMicroservice). It is provided here in case you just want to play with it without taking the tutorial. After you build and run it you can always take the tutorial or refer to parts of it to understand more.
+This repository contains the example Tutorial Microservice that you get when you complete the [Tutorial Microservice Tutorial](https://github.com/entityc/ec-tutorials/tree/main/TutorialMicroservice). It is provided here in case you just want to play with it without taking the tutorial. After you build and run it you can always take the tutorial or refer to parts of it to understand more.
 
 The microservice is based on [Spring Boot](https://spring.io/projects/spring-boot) (thus the `-sb-` in the repository name).
 
@@ -95,13 +95,13 @@ The screen should show a **New Tutorial** button. Press this button and then ent
 
 ## Going Further
 
-This microservice was built with the [Entity Compiler](http://github.com/entityc/entity-compiler). The source files used to synthesize much of its code is located under the [`src/ec`](src/ec) directory of this repository. To understand how the compiler works its best to take the [Entity Compiler Tutorial](http://github.com/entityc/ec-tutorials/EntityCompiler). To understand how this microservice in particular is built you can take the [Tutorial Microservice Tutorial](http://github.com/entityc/ec-tutorials/TutorialMicroservice). This will give you the information you need to not only make changes or enhancements to this microservice but also the ability to create other microservices.
+This microservice was built with the [Entity Compiler](http://github.com/entityc/entity-compiler). The source files used to synthesize much of its code is located under the [`src/ec`](src/ec) directory of this repository. To understand how the compiler works its best to take the [Entity Compiler Tutorial](https://github.com/entityc/ec-tutorials/tree/main/EntityCompiler). To understand how this microservice in particular is built you can take the [Tutorial Microservice Tutorial](https://github.com/entityc/ec-tutorials/tree/main/TutorialMicroservice). This will give you the information you need to not only make changes or enhancements to this microservice but also the ability to create other microservices.
 
 This microservice is also built using code templates from the [ec-std-lib](http://github.com/entityc/ec-std-lib) and [ec-springboot-lib](http://github.com/entityc/ec-springboot-lib) repositories. Although they have enough features to generate this microservice, they likely will not have enough to build all features you might require in your own microservice. You can build new features in your own microservice (with your own templates) but you are encouraged to contribute new features to one of these repositories or some other open source repository.
 
 ## Contributing
 
-This repository is read-only since it represents the result of the completion of a tutorial ([Tutorial Microservice Tutorial](http://github.com/entityc/ec-tutorials/TutorialMicroservice)). If any changes are made to the tutorial, this microservice may change as a result. Contributions to the Entity Compiler and its code libraries are always welcome, please see those repositories for instructions on how to contribute.
+This repository is read-only since it represents the result of the completion of a tutorial ([Tutorial Microservice Tutorial](https://github.com/entityc/ec-tutorials/tree/main/TutorialMicroservice)). If any changes are made to the tutorial, this microservice may change as a result. Contributions to the Entity Compiler and its code libraries are always welcome, please see those repositories for instructions on how to contribute.
 
 ## Licensing
 
