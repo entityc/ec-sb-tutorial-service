@@ -85,7 +85,7 @@ configuration CodeGen {
             output primary SourceMain
             config {
                 "appTitle" : "Tutorial Central Admin",
-                "appHomeMessage": "This website was built as part of an Entity Compiler tutorial to show the power of the Entitle Compiler and templates written for it. The templates used generate a website implemented with Springboot, Thymeleaf and Bootstrap. It includes user authentication and this web admin console. ",
+                "appHomeMessage": "This website was built as part of an Entity Compiler tutorial to show the power of the Entity Compiler and templates written for it. The templates used generate a website implemented with Springboot, Thymeleaf and Bootstrap. It includes user authentication and this web admin console. ",
                 "adminUrlPrefix" : "admin",
                 "optShowMarkdownIcon": true
             }
