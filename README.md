@@ -18,6 +18,10 @@ The microservice itself is written in Java so it can run as long as you have Jav
 
 The microservice needs to connect to a Postgres database so you will need to install [PostgreSQL](https://www.postgresql.org) v11 or higher if it is not already installed. Alternately you can also connect to a remote Postgres database if that is available to you.
 
+If you do install PostgreSQL, you'll need to make sure that `psql` is in your search path in your shell startup by adding the PostgreSQL `bin` directory to your `PATH`. For example, on the Mac for version 14, it might look like:
+
+    export PATH=$PATH:/Library/PostgreSQL/14/bin
+
 By default, this microservice is configured to connect to a database by the name of `ectutorialdb` and a user named `postgres` with a password of `postgres`. You are free to use whichever configuration you prefer, just make sure to edit the [application.yml](src/main/resources/application.yml) file, specifically the lines:
 
 ```
@@ -62,7 +66,7 @@ http:/localhost:8080
 
 This will bring you to the login screen. Since this is the first time to use the site we will need to register. Under the **Log In** button there is a link: **Sign Up here**. Click that and it will take you to the signup screen. There you can sign up with your name, email address and password.
 
-After signing up, it will bring you to the "user" side of the website where you can just view tutorials. Since we just started, there are no tutorials. We need to jump over to the admin side of the site however, our just created user is not an admin. Normally someone on such a site with admin permissions would upgrade your permissions however we are the very first user so we will need to go directly into our database and upgrade us that way (once we are an admin we will be able to change permissions of future users via the web admin console).
+After signing up, go ahead and shutdown the microservice (press ctrl-c in the shell where you invoked `run.sh` above). We need to make this first user an admin but since there are no admins available yet to do this, we will have to go into the database directly and upgrade us that way (once we are an admin we will be able to change permissions of future users via the web admin console).
 
 In a shell use `psql` to connect to your database (if you configured it differently than the default, use those settings).
 
@@ -85,13 +89,19 @@ insert into platform_user_roles (user_id, value) values ('your-uuid-from-above',
 
 This should do it, exit `psql`.
 
-Now we are ready to access the **admin** side of the site. In your web browser, change your URL to this:
+Now we should start up the microservice again by running:
+
+```shell
+./run.sh
+```
+
+We are now ready to access the **admin** side of the site. In your web browser, set your URL to this:
 
 ```
 http://localhost:8080/admin
 ```
 
-The screen should show a **New Tutorial** button. Press this button and then enter a title and unique identifier for the tutorial, then press **Create**. Now you have your first tutorial. You can now edit it to fill in modules, sessions, exercises and steps. When you have a bit content entered, jump over to the **user** side of the site to see how it looks by simply setting the browser URL to `http://localhost:8080`.
+The screen should show two buttons: **Tutorials** and **Users**. Click on the **Tutorials** button. Of course there won't be any tutorials but there should be a **New Tutorial** button. Press this button and then enter a **title** and unique **identifier** for the tutorial, then press **Create**. Now you have your first tutorial. You can now edit it to fill in modules, sessions, exercises and steps. When you have a bit content entered, jump over to the **user** side of the site to see how it looks by simply setting the browser URL to `http://localhost:8080`.
 
 ## Going Further
 
