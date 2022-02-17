@@ -34,15 +34,11 @@ configuration CodeGen {
     }
 
     repository ServerTemplates {
-        type local
-        path "../ec-springboot-lib"
-        /*
         type github
         organization "entityc"
         name "ec-springboot-lib"
         path ""
-        tag "v1.0.1"
-        */
+        tag "v0.9.0"
     }
 
     templates {
