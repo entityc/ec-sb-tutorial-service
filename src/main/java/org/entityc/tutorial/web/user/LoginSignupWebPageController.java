@@ -99,7 +99,7 @@ public class LoginSignupWebPageController {
 
         User user = userDetailsService.findByEmail(securityService.findLoggedInUsername());
         Set<Role> roles = user.getRoles();
-        boolean canGoToAdminSide = false;
+        boolean canGoToAdminSide = roles.contains(Role.ADMINISTRATOR) || roles.contains(Role.INSTRUCTOR);
 
         return canGoToAdminSide ? "redirect:/admin" : "redirect:/";
     }
@@ -116,7 +116,7 @@ public class LoginSignupWebPageController {
 
     @PostMapping(value = "/signup")
     public String registerUserAccount(@ModelAttribute("user") @Valid UserSignupDto userDto,
-                                      BindingResult result) throws ServiceException {
+                                      BindingResult result, HttpServletResponse res) throws ServiceException {
 
         User existing = userDetailsService.findByEmail(userDto.getUsername());
         if (existing != null) {
@@ -128,7 +128,7 @@ public class LoginSignupWebPageController {
         }
 
         save(userDto);
-        return "redirect:/signup?success";
+        return login(userDto.getUsername(), userDto.getPassword(), res);
     }
 
     public User save(UserSignupDto userSignupDto) throws ServiceException {
@@ -140,6 +140,8 @@ public class LoginSignupWebPageController {
         HashSet<Role> roles = new HashSet<>();
         roles.add(Role.STUDENT);
         user.setRoles(roles);
-        return userService.createUser(user);
+        User createdUser = userService.createUser(user);
+        userDetailsService.updateUser(createdUser);
+        return createdUser;
     }
 }
