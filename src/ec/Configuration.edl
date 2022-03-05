@@ -38,7 +38,7 @@ configuration CodeGen {
         organization "entityc"
         name "ec-springboot-lib"
         path ""
-        tag "v0.9.0"
+        tag "v0.9.1"
     }
 
     templates {

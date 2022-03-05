@@ -49,4 +49,8 @@ public class PersistentUserDetailsService implements UserDetailsService {
         userByEmail.put(email, obj);
         return obj;
     }
+
+    public void updateUser(User user) {
+        userByEmail.put(user.getEmail(), user);
+    }
 }

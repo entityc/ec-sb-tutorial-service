@@ -70,4 +70,8 @@ domain AdminUI (Tutorial) {
         relationships {
         }
     }
+    enum Role {
+        Instructor    { T "canAccess" }
+        Administrator { T "canAccess" }
+    }
 }
