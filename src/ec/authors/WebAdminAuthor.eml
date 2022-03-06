@@ -1,0 +1,18 @@
+$[author to org.entityc.springboot.web.admin.detail]
+    $[author to outlet headlineButtonArea]
+        $[if entity.name == "Tutorial" || entity.name == "Module" || entity.name == "Session"]
+<div class="d-flex flex-row g-0 justify-content-between align-items-center"><div class="d-flex g-0"><h2 th:text="${headlineExpression}"></h2></div><div class="d-flex g-0"><a class="btn btn-outline-primary" role="button" th:href="@{'/${entity|domain:APIPath|name}/' + ${$}{${entity|domain:JSONDTO|name|uncapitalize}.id}}">VIEW</a></div></div>
+        $[/if]
+    $[/author]
+$[/author]
+	<h2>${appTitle}</h2>
+$[author to org.entityc.springboot.web.admin.home]
+        $[author to outlet homeMenuButtonArea]
+<div class="d-flex flex-row g-0 justify-content-between align-items-center"><div class="d-flex g-0"><h2>${appTitle}</h2></div><div class="d-flex g-0"><a class="btn btn-outline-primary" role="button" th:href="@{'/'}">VIEW-ONLY SITE</a></div></div>
+        $[/author]
+    $[author to outlet entityHomeButtonArea]
+        $[if topEntity.name == "Tutorial"]
+<div class="d-flex flex-row g-0 justify-content-between align-items-center"><div class="d-flex g-0"><h3>${topEntity|title|plural}</h3></div><div class="d-flex g-0"><a class="btn btn-outline-primary" role="button" th:href="@{'/'}">VIEW</a></div></div>
+        $[/if]
+    $[/author]
+$[/author]

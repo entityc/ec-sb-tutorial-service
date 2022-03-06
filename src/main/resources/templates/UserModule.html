@@ -56,9 +56,16 @@
 		<li class="breadcrumb-item active" aria-current="page">Module</li>
     </ol>
   </nav>
-	<h2 th:text="|Module ${Module.number}: ${Module.title}|">Headline</h2>
+	<div class="d-flex flex-row g-0 justify-content-between align-items-center"><div class="d-flex g-0"><h2 th:text="|Module ${Module.number}: ${Module.title}|">Headline</h2></div><div th:if="${canGoToAdminSide}" class="d-flex g-0"><a class="btn btn-outline-primary" role="button" th:href="@{'/admin/module/' + ${Module.id} + '/detail'}">ADMIN</a></div></div>
 	<br/>
-	<p th:text="${Module.summary}"></p>
+	<div class="container g-0">
+	<input type="hidden" id="module-overview-hidden" th:value="${Module.overview}"/>
+	<div id="module-overview" class="markdown-body"/>
+	<script>
+		document.getElementById('module-overview').innerHTML =
+		  marked.parse(document.getElementById('module-overview-hidden').value, {pedantic: false, gfm: true});
+	</script>
+	</div>
 	<br/>
 	<div class="container-sm">
 		<hr/>
