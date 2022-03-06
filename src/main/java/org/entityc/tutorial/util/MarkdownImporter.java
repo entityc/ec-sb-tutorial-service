@@ -150,7 +150,7 @@ public class MarkdownImporter {
                             importState = stateForLevel(lineLevel);
                             repeat = 1;
                         }
-                        if (bodyBuilder.length() == 0 && line.trim().isEmpty()) {
+                        if (bodyBuilder.length() == 0 && (line == null || line.trim().isEmpty())) {
                             continue;
                         }
                         bodyBuilder.append(line);

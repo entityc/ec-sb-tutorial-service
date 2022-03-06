@@ -3,6 +3,7 @@ package org.entityc.tutorial.web.user;
 import org.entityc.tutorial.dto.TutorialDto;
 import org.entityc.tutorial.exception.ServiceException;
 import org.entityc.tutorial.model.Module;
+import org.entityc.tutorial.model.Role;
 import org.entityc.tutorial.model.Session;
 import org.entityc.tutorial.model.User;
 import org.entityc.tutorial.security.PersistentUserDetailsService;
@@ -20,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.Set;
 import java.util.UUID;
 import java.util.Vector;
 
@@ -47,6 +49,7 @@ public class UserWebPageController {
         model.addAttribute("TutorialList", tutorialService.getTutorialDtoList(0, 100, true));
         User user = userDetailsService.findByEmail(securityService.findLoggedInUsername());
         model.addAttribute("loggedInUser", user);
+        addCanGoToAdminSide(model);
         return "UserHome";
     }
 
@@ -57,6 +60,7 @@ public class UserWebPageController {
         model.addAttribute("ModulesList", moduleService.getModuleDtoListByTutorial(tutorialId, 0, 100, true));
         User user = userDetailsService.findByEmail(securityService.findLoggedInUsername());
         model.addAttribute("loggedInUser", user);
+        addCanGoToAdminSide(model);
         return "UserTutorial";
     }
 
@@ -70,6 +74,7 @@ public class UserWebPageController {
         model.addAttribute("SessionsList", sessionService.getSessionDtoListByModule(moduleId, 0, 100, true));
         User user = userDetailsService.findByEmail(securityService.findLoggedInUsername());
         model.addAttribute("loggedInUser", user);
+        addCanGoToAdminSide(model);
         return "UserModule";
     }
 
@@ -98,6 +103,14 @@ public class UserWebPageController {
         model.addAttribute("SessionMarkdown", sessionService.buildMarkdownDocSection(1, sessionDto, 1));
         User user = userDetailsService.findByEmail(securityService.findLoggedInUsername());
         model.addAttribute("loggedInUser", user);
+        addCanGoToAdminSide(model);
         return "UserSession";
+    }
+    private void addCanGoToAdminSide(Model model) {
+        User user = userDetailsService.findByEmail(securityService.findLoggedInUsername());
+        Set<Role> roles = user.getRoles();
+
+        boolean canGoToAdminSide = roles.contains(Role.INSTRUCTOR) || roles.contains(Role.ADMINISTRATOR);
+        model.addAttribute("canGoToAdminSide", canGoToAdminSide);
     }
 }

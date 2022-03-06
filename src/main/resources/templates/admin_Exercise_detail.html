@@ -60,14 +60,12 @@
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"> <a th:href="@{/admin}">Admin Home</a> </li>
-      <li class="breadcrumb-item"> <a th:href="@{/admin/exercise}">Exercises</a> </li>
       <li class="breadcrumb-item"> <a th:href="@{/admin/tutorial/{id}/detail(id=${tutorialDto.id})}" th:text="|${tutorialDto.title}|">link</a> </li>
       <li class="breadcrumb-item"> <a th:href="@{/admin/module/{id}/detail(id=${moduleDto.id})}" th:text="|Module ${moduleDto.number}: ${moduleDto.title}|">link</a> </li>
       <li class="breadcrumb-item"> <a th:href="@{/admin/session/{id}/detail(id=${sessionDto.id})}" th:text="|Session ${sessionDto.number}|">link</a> </li>
       <li class="breadcrumb-item active" aria-current="page">Exercise</li>
     </ol>
   </nav>
-    <h2 th:text="|Exercise ${exerciseDto.number}|"></h2>
 	<div class="container">
 
 		<table class="table">

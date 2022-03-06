@@ -57,6 +57,7 @@
 		<li class="breadcrumb-item active" aria-current="page">Session</li>
     </ol>
   </nav>
+	<div class="d-flex flex-row g-0 justify-content-between align-items-center"><div class="d-flex g-0">&nbsp;</div><div th:if="${canGoToAdminSide}" class="d-flex g-0"><a class="btn btn-outline-primary" role="button" th:href="@{'/admin/session/' + ${Session.id} + '/detail'}">ADMIN</a></div></div>
 	<input type="hidden" id="markdown-content-hidden" th:value="${SessionMarkdown}"/>
 	<div id="markdown-content" class="markdown-body"/>
 	<script>
